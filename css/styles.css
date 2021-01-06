@@ -1,0 +1,105 @@
+.Parent-DOM{
+   margin:auto;
+}
+
+.Title{
+    background-color: black;
+    text-align: center;
+}
+.Title-Text{
+    color:white;
+}
+.Budget-Header-Container{
+    color: rgba(85, 85, 85, 0.699);
+}
+.Balance{
+    min-height: 200px;
+    color: blue;
+}
+.balance-title{
+    min-height: 80px;
+}
+.Income{
+    vertical-align: baseline;
+    color:green;
+}
+
+.Expenses{
+    vertical-align: baseline;
+    text-align: end;
+    color: red;
+}
+.chart{
+    position: unset;
+    text-align: center;
+}
+.Budget-Dashboard{
+    background-color:honeydew;
+    
+}
+
+.balance-value{
+    max-height: 100px;
+    max-width: 100px;
+    padding-left: 10px;
+}
+
+.Dashboard-Title{
+    color:grey;
+    text-align: center;
+}
+.Income-Button{
+    text-align: center;
+    height: inherit;
+    padding-right: 20px;
+    color: green;
+}
+.Income-List{
+    max-height: fit-content;
+    min-height: 200px;
+}
+.Expense-Button{
+    color:red;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.Expense-List{
+    max-height: fit-content;
+    min-height: 200px;
+    color:red;
+}
+.All-Button {
+    text-align: end;
+    height: inherit;
+    color:blue
+}
+.Add-Task{
+    float: right;
+    max-width: 30px;
+    height:30px ;
+}
+.hide{
+    display:none;
+}
+.active{
+    opacity: 1 !important;
+}
+.Tab-Buttons{
+    display: inline-flex;
+    pointer-events: all;
+       
+}
+.inactive{
+    opacity: 0.5;
+}
+
+.Expense-Input{
+    display: inline-flex;
+    max-height: 20px;
+    max-width: 20px;
+}
+.Income-Input{
+    display: inline-flex;
+    max-height: 20px;
+    max-width: 20px;
+}
