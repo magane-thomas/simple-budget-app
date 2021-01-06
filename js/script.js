@@ -93,7 +93,10 @@
 
       //AddIncome
 
-      let ENTRY_LIST=[];
+      const ENTRY_LIST={
+        incomes: [],
+        expenses: []
+      };
       let Balance=0, Income=0, Expenses=0;
       const Delete="delete", Edit="edit";
 
@@ -101,88 +104,76 @@
           if(!IncomeTxt.value|| !IncomeAmt.value) return;
 
       let income={
+          id: 1,
           type:"Income",
           title:IncomeTxt.value,
           amount:parseFloat(IncomeAmt.value),
       };
-          ENTRY_LIST.push(income);
-          updateUI();
+          ENTRY_LIST.incomes.push(income);
+          updateUI(ENTRY_LIST);
           ClearInput([IncomeTxt,IncomeAmt]);
       });
 
       AddExpense.addEventListener('click',function(){
 
-          if(!ExpenseTxt.value || !ExpenseAmt.value)return;
+          if(!ExpenseTxt.value || !ExpenseAmt.value) return;
 
            let expense={
+               id: 1,
                type:"Expense",
                title:ExpenseTxt.value,
                amount:parseFloat(ExpenseAmt.value),
               };
 
-           ENTRY_LIST.push(expense);
-           updateUI();
-           ClearInput([ExpenseTxt,ExpenseAmt]);
-
+           ENTRY_LIST.expenses.push(expense);
+           updateUI(ENTRY_LIST);
+           ClearInput([ExpenseTxt, ExpenseAmt]);
       });
 
       function ClearInput(inputsArray){
            inputsArray.forEach(Input=>{Input.value=""});
       }
 
-     function showEntry(list,type,title,amount,id){
-         const  entry = `<li id="${id}" class="${type}">
-                          <div class="entry">${title}$${amount}</div>
-                          <div class="edit"></div>
-                          <div class="delete"></div>
-                          </li>`;
-          list.insertAdjacentHTML("afterbegin",entry);
-     }
-
-     function calculateTotal(type, ENTRY_LIST){
-          let sum = 0;
-
-          ENTRY_LIST.forEach(entry=>{
-              if(entry.type==type){
-                  sum=entry.amount;
-              }
-              return sum;
-          });
+     // NOTE: refactored the function to take two arguements
+     //        the list to add the dom element to and
+     //        the income/ expense object.
+      function showEntry(list, element){
+          const  entry = `<li id="${element.id}" class="${element.type}">
+                           <div class="entry">${element.title}$${element.amount}</div>
+                           <div class="edit"></div>
+                           <div class="delete"></div>
+                           </li>`;
+           list.insertAdjacentHTML("afterbegin", entry);
       }
 
-     // NOTE: note sure what the income-expense variable is.
-     //       in the place of the profit and loss variables
-     //       you only had "Income Expense" as an arguement.
-     function calculateTotalBalance(profit, loss){
-          let originalVal = Income-Expenses;
-          let _val = 1;
+     // NOTE: refactored this function to work with the ENTRY_LIST object
+     function updateUI(entryList){
+        const { incomes, expenses } = entryList;
 
-          return _val;
-      }
+        let totalExpenses = expenses.reduce((acc, entry) => {
+          return acc + entry.amount;
+        }, 0);
 
-     function updateUI(){
+        let totalIncomes = incomes.reduce((acc, entry) => {
+          return acc + entry.amount
+        }, 0);
 
-      Income=calculateTotal('Income', ENTRY_LIST);
-      Expenses=calculateTotal('Expense', ENTRY_LIST);
-      Balance=Math.abs(calculateTotalBalance(Income-Expenses));
+        let balance = parseFloat(totalIncomes) - parseFloat(totalExpenses);
 
-      //let sign = (profit>loss)?"$":"-$";
+        BalanceEl.innerHTML=`<small>$</small>${balance}`;
+        Income_TotalEl.innerHTML=`<small>$</small>${totalIncomes}`;
+        Expenses_TotalEl.innerHTML=`<small>$</small>${totalExpenses}`;
 
-      BalanceEl.innerHTML=`<small>$</small>${Balance}`;
-      Income_TotalEl.innerHTML=`<small>$</small>${Income}`;
-      Expenses_TotalEl.innerHTML=`<small>$</small>${Expenses}`;
+        // NOTE: updating the table
+        expenses.forEach(item => {
+          showEntry(ExpenseList, item);
+          showEntry(AllList, item)
+        });
+        incomes.forEach(item => {
+          showEntry(IncomeList, item);
+          showEntry(AllList, item);
+        });
 
-      ClearInput([Income-List,ExpenseList,AllList]);
-
-      ENTRY_LIST.forEach((entry,index)=>{
-      if(entry.type=='Income'){
-          showEntry(IncomeList,entry.type,entry.title,entry.amount,index);
-      }else(entry.type=='Expense');{
-          showEntry(ExpenseList,entry.type,entry.title,entry.amount,index);
-      }
-          showEntry(AllList,entry.type,entry.title,entry.amount,index);
-
-       });
-       //updateChart(income,expense);
+        return;
       }
 }());

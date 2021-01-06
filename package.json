@@ -4,8 +4,8 @@
   "author": "Thomas Magane <magane.thommas@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "begin": "npm-run-all -p dev:**",
-    "dev:watch": "live-server --port=8080 --no-browser --cors ./"
+    "dev": "npm-run-all -p watch:**",
+    "watch:server": "live-server --port=8080 --no-browser --cors ./"
   },
   "devDependencies": {
     "live-server": "^1.2.1",
