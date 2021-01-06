@@ -29,7 +29,6 @@
   const ExpenseAmt = document.querySelector('#Expense-Value-Amount');
   const ExpenseTxt = document.querySelector('#Expense-Title-Input');
 
-
   /*
   (Style Transition between each Toggle button)
   */
@@ -90,18 +89,15 @@
           });
           }
 
-
-
-
   //Adding New Entries
 
       //AddIncome
 
       let ENTRY_LIST=[];
-      let Balance=0,Income=0,Expenses=0;
-      const Delete="delete" ,Edit="edit";
+      let Balance=0, Income=0, Expenses=0;
+      const Delete="delete", Edit="edit";
 
-      AddIncome.addEventListener('click',function(){
+      AddIncome.addEventListener('click', function(){
           if(!IncomeTxt.value|| !IncomeAmt.value) return;
 
       let income={
@@ -134,22 +130,6 @@
            inputsArray.forEach(Input=>{Input.value=""});
       }
 
-      function calculateTotal(type, ENTRY_LIST){
-          let sum = 0;
-          ENTRY_LIST.forEach(entry=>{
-              if(entry.type==type){
-                  sum=entry.amount
-              }
-              return sum;
-          });
-      }
-
-      function calculateTotalBalance(profit,loss){
-          return Income-Expenses ;
-
-
-      }
-
      function showEntry(list,type,title,amount,id){
          const  entry = `<li id="${id}" class="${type}">
                           <div class="entry">${title}$${amount}</div>
@@ -159,10 +139,31 @@
           list.insertAdjacentHTML("afterbegin",entry);
      }
 
+     function calculateTotal(type, ENTRY_LIST){
+          let sum = 0;
+
+          ENTRY_LIST.forEach(entry=>{
+              if(entry.type==type){
+                  sum=entry.amount;
+              }
+              return sum;
+          });
+      }
+
+     // NOTE: note sure what the income-expense variable is.
+     //       in the place of the profit and loss variables
+     //       you only had "Income Expense" as an arguement.
+     function calculateTotalBalance(profit, loss){
+          let originalVal = Income-Expenses;
+          let _val = 1;
+
+          return _val;
+      }
+
      function updateUI(){
 
-      Income=calculateTotal('Income',ENTRY_LIST);
-      Expenses=calculateTotal('Expense',ENTRY_LIST);
+      Income=calculateTotal('Income', ENTRY_LIST);
+      Expenses=calculateTotal('Expense', ENTRY_LIST);
       Balance=Math.abs(calculateTotalBalance(Income-Expenses));
 
       //let sign = (profit>loss)?"$":"-$";
