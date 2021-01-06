@@ -2,20 +2,17 @@
 <html>
     <head>
         <title>Budget Me</title>
-        <link rel="stylesheet" href="style.css"></link>
         <meta charset="UTF-8">
+        <base href="./">
         <meta name="BudgetApp" content="width=device-width">
-        <link rel="stylesheet" href="./css/style.css">
+        <link href="css/styles.css">
     </head>
     <body>
         <div class="Parent-DOM">
-
             <div class="Title"><h1 class="Title-Text"> Budget Me</h1></div>
-
                 <div class="Budget-Header-Container">
                     <div class="Balance">
                         <div class="balance-title"><h1>Balance</h1></div>
-
                          <div class="balance-value">
                              <small>$</small>0
                         </div>
@@ -28,9 +25,7 @@
                                  <small>$</small>0
                              </div>
                         </div>
-
                         <div class="Chart"></div>
-
                         <div class="Expenses">
                             <div class="expenese-title">Expenses</div>
                              <div class="expenses-value">
@@ -38,49 +33,39 @@
                              </div>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="Budget-Dashboard">
-
                     <div class="Dashboard-Title"><h3>Ledger</h3></div>
-
                     <div class="Tab-Buttons">
                         <div class="Expense-Button inactive">Expense</div>
                         <div class="Income-Button inactive">Income</div>
                         <div class="All-Button active ">All</div>
                     </div>
-
                      <div class="hide" id="Expenses">
                         <ul class="Expense-List">
-
                          </ul>
 
                             <div class="Expense-Input">
                                 <input type="Text" id="Expense-Title-Input" name="Title" placeholder="Title">
                                 <input type="Number" id="Expense-Value-Amount" name="Amount" placeholder="$0">
-                                <img class="Expense-Input" src="images (3).jpeg" alt="New Task">
-
+                                <img class="Expense-Input" src="" alt="New Task">
                             </div>
                       </div>
 
                      <div class="hide" id="Income">
                         <ul class="Income-List"></ul>
-
                         <div class="Income-Input">
                             <input type="Text" id="Income-Title-Input" name="Title" placeholder="Title">
                             <input type="Number" id="Income-Value-Amount" name="Amount" placeholder="$0">
-                            <img class="Income-Input" src="images (3).jpeg" alt="New Task">
+                            <img class="Income-Input" src="" alt="New Task">
                         </div>
                     </div>
-
                     <div id="All">
                         <ul class="All-List"></ul>
                     </div>
-
-                     </div>
+                 </div>
                 </div>
-
-             <script type="text/javascript" src="./js/script.js"></script>
+             <script type="text/javascript" src="js/script.js"></script>
     </body>
     </html>
